@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannawitch Sittitun Portfolio</title>
+    
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/pixelarticons@2.1.2/fonts/pixelart-icons-font.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <!-- FX Layer สำหรับแสดงแอนิเมชัน Vampire Survivors -->
+    <div id="fx-layer"></div>
+
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="nav-brand">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="48" height="48" viewBox="0 0 1024 1024" style="color: rgb(31, 68, 147);"><g transform="rotate(90 512 512)"><path fill="currentColor" d="M960 192v64h-64v-64zV64H832v64h-64V64h64V0h192v192zm-192 0h-64v-64h64zm-64 0v64h-64v-64zM576 320v-64h64v64zm-64 64v-64h64v64zm-128 64v-64h128v64zm-128 64v64h-64V448h192v64zm-64 192v-64h64v-64h128v64h64v128h-64v64h-64v64h-64v64h-64v64H64v-64h128v-64h-64v-64H64v128H0V832h64v-64h64v-64zm320-64h64v192H448v-64h64zm128-128v128h-64V512zm64-64v64h-64v-64zm64-64v64h-64v-64zm64-64v64h-64v-64zm64 0h-64v-64h64z"></path></g></svg>
+                    <h1>Pannawitch Sittitun</h1>
+                </div>
+                <div class="social-links">
+                    <label style="margin-bottom:0; display:flex; align-items:center;">
+                        <input type="checkbox" class="nes-checkbox" id="toggle-fx" />
+                        <span style="font-size:0.8rem; white-space:nowrap; margin-left: 0.5rem; margin-right: 1rem;">VS FX</span>
+                    </label>
+                    <!--new svg icon for whatsapp-->
+                    <a href="tel:0637450769" title="Phone: 0637450769" style="display: inline-flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="48" height="48" viewBox="0 0 24 24" style="color: rgb(124, 197, 4);"><path fill="currentColor" d="M12 7V5h3v1h1v1h1v1h1v1h1v3h-2v-2h-1V9h-1V8h-1V7zm0 3h2v2h-2z"></path><path fill="currentColor" d="M23 8v4h-2V8h-1V7h-1V6h-1V5h-1V4h-1V3h-4V1h4v1h2v1h1v1h1v1h1v1h1v2zm-1 9h1v3h-1v2h-1v1h-5v-1h-4v-1h-2v-1H9v-1H8v-1H7v-1H6v-1H5v-1H4v-1H3v-2H2V8H1V3h1V2h2V1h3v1h1v1h1v2h1v3H9v1H8v3h1v1h1v1h1v1h1v1h3v-1h1v-1h3v1h2v1h1z"></path></svg>
+                    </a>
+                    <!--new svg icon for gmail-->
+                    <a href="mailto:biwmlg43205@gmail.com" title="Email: biwmlg43205@gmail.com" style="display: inline-flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="48" height="48" viewBox="0 0 32 32" style="color: rgb(226, 81, 19);"><path fill="currentColor" d="M30.48 12.19v-1.52h-1.53V9.14h-1.52V6.1h-1.52v12.19h1.52v-1.53h1.52v-1.52h1.53v13.71H32V12.19zm-1.53 16.76h1.53v1.53h-1.53Zm-25.9 1.53h25.9V32H3.05Zm21.33-12.19h1.53v1.52h-1.53Zm-1.52 7.62h1.52v1.52h-1.52Zm0-6.1h1.52v1.52h-1.52Zm-1.53 4.57h1.53v1.53h-1.53Zm0-3.05h1.53v1.53h-1.53Zm0-10.66h1.53v4.57h-1.53Zm-1.52-1.53h1.52v1.53h-1.52Zm-9.14 13.72h10.66v1.52H10.67Zm7.62-7.62h3.04v1.52h-3.04Zm0-4.57h-4.57v1.52h3.04v3.05h1.53zm-4.57 4.57h3.04v1.52h-3.04Zm-1.53-7.62h7.62v1.52h-7.62Zm0 10.67h7.62v1.52h-7.62Zm0-6.1h1.53v3.05h-1.53Z"></path><path fill="currentColor" d="M10.67 16.76h1.52v1.53h-1.52Zm0-7.62h1.52v1.53h-1.52ZM9.14 24.38h1.53v1.53H9.14Zm0-3.05h1.53v1.53H9.14Zm0-10.66h1.53v6.09H9.14ZM7.62 25.91h1.52v1.52H7.62Zm0-6.1h1.52v1.52H7.62ZM25.91 6.1V4.57h-3.05V3.05h-1.53V1.52h-1.52V0h-7.62v1.52h-1.52v1.53H9.14v1.52H6.1V6.1zM6.1 18.29h1.52v1.52H6.1ZM1.52 28.95h1.53v1.53H1.52Z"></path><path fill="currentColor" d="M1.52 15.24h1.53v1.52h1.52v1.53H6.1V6.1H4.57v3.04H3.05v1.53H1.52v1.52H0v16.76h1.52z"></path></svg>
+                    </a>
+                    <!--new svg icon for github-->
+                    <a href="https://github.com/Biwjustwork" target="_blank" style="display: inline-flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="48" height="48" viewBox="0 0 24 24" style="color: rgb(28, 32, 51);"><path fill="currentColor" d="M23 9v6h-1v2h-1v2h-1v1h-1v1h-1v1h-2v1h-1v-5h-1v-1h1v-1h2v-1h1v-1h1V9h-1V6h-2v1h-1v1h-1V7h-4v1H9V7H8V6H6v3H5v5h1v1h1v1h2v2H7v-1H6v-1H4v1h1v2h1v1h3v3H8v-1H6v-1H5v-1H4v-1H3v-2H2v-2H1V9h1V7h1V5h1V4h1V3h2V2h2V1h6v1h2v1h2v1h1v1h1v2h1v2z"></path></svg>
+                    </a>
+                    <!--new svg icon for facebook-->
+                    <a href="https://www.facebook.com/panawich.khunchomphu" target="_blank" style="display: inline-flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="48" height="48" viewBox="0 0 24 24" style="color: rgb(58, 118, 245);"><path fill="currentColor" d="M23 2v20h-1v1h-8v-8h2v-1h1v-2h-3V9h1V8h2V5h-4v1h-2v2h-1v4H7v3h3v8H2v-1H1V2h1V1h20v1z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- HERO / START SCREEN -->
+            <section id="start-screen" class="nes-container is-dark with-title is-centered">
+                <p class="title">START GAME</p>
+                <div class="hero-content">
+                    <h2 class="nes-text is-primary title-anim">Welcome to My Portfolio</h2>
+                    <p class="subtitle">Backend Dev | Game Dev</p>
+                    <p class="instruction">PRESS START TO CONTINUE...</p>
+                    <button type="button" class="nes-btn is-success" id="btn-start">PRESS START</button>
+                </div>
+            </section>
+
+            <!-- MAIN PORTFOLIO CONTENT (Hidden until start) -->
+            <div id="game-content" class="hidden">
+                
+                <!-- ABOUT ME -->
+                <section class="nes-container with-title section-box">
+                    <h2 class="title">About Me</h2>
+                    <div class="nes-container is-rounded quest-item">
+                        <div class="avatar-row">
+                            <div class="image-container" style="display: flex; align-items: center; justify-content: center; width: 100px; height: 100px; background-color: #212529; border-radius: 50%;">
+                                <!-- ใช้รูป Avatar ของ NES.css -->
+                                <i class="nes-ash"></i>
+                            </div>
+                            <div class="dialog-box nes-balloon from-left">
+                                <p class="nes-text is-primary">Hello, I'm Pannawitch Sittitun!</p>
+                                <p><strong>Class:</strong> Backend Dev, Game Dev</p>
+                                <p id="about-level-container"><strong>Level:</strong> 2nd Year Student</p>
+                                <p>"I am a second-year university student with a strong interest in technology and digital innovation. Although I am at the beginning of my learning journey, I am eager to develop new skills, especially in programming, design, and data analysis. I enjoy working in teams and am always open to new challenges that help me grow both academically and personally. I look forward to every opportunity to learn, contribute, and continuously improve myself."</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EDUCATION -->
+                <section class="nes-container with-title section-box is-dark">
+                    <h2 class="title">Education</h2>
+                    <div class="nes-container is-rounded is-dark">
+                        <ul class="nes-list is-circle">
+                            <li><strong>[2024 - Present]</strong> Chiang Mai University <br>Bachelor's degree / Digital Industry Integration (GPA: 3.92)</li>
+                            <li><strong>[2021 - 2025]</strong> Wattanothai Payap School Chiang Mai<br>High School / Computer and Robotics Engineering (GPA: 3.89)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SKILLS -->
+                <section class="nes-container with-title section-box">
+                    <h2 class="title">Skills</h2>
+                    
+                    <!-- TABS (SKILLS) -->
+                    <div class="tabs" data-tab-group="skills-group">
+                        <button class="nes-btn is-primary" data-tab="tab-hard">Hard Skills</button>
+                        <button class="nes-btn" data-tab="tab-soft">Soft Skills</button>
+                    </div>
+
+                    <div class="tab-contents">
+                        <!-- Hard Skills -->
+                        <div id="tab-hard" class="tab-pane active" data-tab-group="skills-group">
+                            <div class="skills-grid">
+                                <div class="skill-card nes-container is-rounded">
+                                    <img src="assets/image%20UI/Java.png" alt="Java">
+                                    <span class="skill-name">Java</span>
+                                </div>
+                                <div class="skill-card nes-container is-rounded">
+                                    <img src="assets/image%20UI/Html&Css.png" alt="HTML & CSS">
+                                    <span class="skill-name">Html & CSS</span>
+                                </div>
+                                <div class="skill-card nes-container is-rounded">
+                                    <img src="assets/image%20UI/Js.png" alt="JavaScript">
+                                    <span class="skill-name">JavaScript</span>
+                                </div>
+                                <div class="skill-card nes-container is-rounded">
+                                    <img src="assets/image%20UI/figma.png" alt="Figma">
+                                    <span class="skill-name">Figma</span>
+                                </div>
+                                <div class="skill-card nes-container is-rounded">
+                                    <img src="assets/image%20UI/canva.png" alt="Canva">
+                                    <span class="skill-name">Canva</span>
+                                </div>
+                                <div class="skill-card nes-container is-rounded">
+                                    <img src="assets/image%20UI/Twine.png" alt="Twine">
+                                    <span class="skill-name">Twine</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soft Skills -->
+                        <div id="tab-soft" class="tab-pane" data-tab-group="skills-group">
+                            <div class="nes-container is-rounded quest-item">
+                                <ul class="nes-list is-circle">
+                                    <li><strong>Problem-solving</strong></li>
+                                    <li><strong>Adaptability</strong></li>
+                                    <li><strong>Critical thinking</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PROFESSIONAL EXPERIENCE (QUESTS) -->
+                <section class="nes-container with-title section-box">
+                    <h2 class="title">Experience</h2>
+                    
+                    <!-- TABS (EXPERIENCE) -->
+                    <div class="tabs" data-tab-group="exp-group">
+                        <button class="nes-btn is-primary" data-tab="tab-production">Production</button>
+                        <button class="nes-btn" data-tab="tab-competition">Competition</button>
+                        <button class="nes-btn" data-tab="tab-academic">Academic</button>
+                        <button class="nes-btn" data-tab="tab-personal">Personal</button>
+                        <button class="nes-btn" data-tab="tab-opensource">Open Source</button>
+                    </div>
+
+                    <div class="tab-contents">
+                        <!-- 1.1 Production Project -->
+                        <div id="tab-production" class="tab-pane active" data-tab-group="exp-group">
+                            <div class="nes-container is-rounded quest-item" style="position: relative;">
+                                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                    <span style="font-size: 0.9rem; color: #888;"><i class="pixelart-icons-font-calendar"></i> 2025 - present</span>
+                                    <a href="https://github.com/PreturnPRO/dii-camt-showprogroup" target="_blank" class="nes-icon github is-small"></a>
+                                </div>
+                                <h3><i class="nes-icon trophy is-small"></i> TurnPRO - DII Platfrom</h3>
+                                <p class="nes-text is-primary">Role: Backend Devoloper</p>
+                                <div class="quest-details">
+                                    <p>DII Platfrom is a full-stack academic management platform for Chiang Mai University built with React, Express, and PostgreSQL. It manages the complete student lifecycle (enrollment, grading, scheduling, internships, career placement) across 5 user roles and 30+ interconnected systems. Features include real-time updates via Socket.IO, gamification, automation engine, PDF generation, and bilingual support (Thai/English).</p>
+                                    <div class="learned-skills" style="margin-top: 1rem;">
+                                        <p style="margin-bottom: 0.5rem;"><strong>Learned:</strong></p>
+                                        <a href="#" class="nes-badge"><span class="is-primary">TypeScript</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-success">React</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-warning">Node.js</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-error">Database Design</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-dark">API Design</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-primary">teamwork</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1.2 Competition Project -->
+                        <div id="tab-competition" class="tab-pane" data-tab-group="exp-group">
+                            <div class="nes-container is-rounded quest-item" style="position: relative;">
+                                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                    <span style="font-size: 0.9rem; color: #888;"><i class="pixelart-icons-font-calendar"></i> 2024</span>
+                                    <a href="https://biwmlg43205.itch.io/oo-ah-game" target="_blank" class="nes-icon star is-small"></a>
+                                </div>
+                                <h3><i class="nes-icon sword is-small"></i> Oo Ah Game (NSC 2024)</h3>
+                                <p class="nes-text is-error">Role: Game Devoloper</p>
+                                <div class="quest-details">
+                                    <p>Oo Ah Game is a voice-controlled game designed to make breathing exercises fun and engaging. Players use their voice and breathing rhythms to control the character, navigating through obstacles by making specific sounds. The project integrates medical theories on respiratory therapy into a gamified experience.</p>
+                                    <div class="learned-skills" style="margin-top: 1rem;">
+                                        <p style="margin-bottom: 0.5rem;"><strong>Learned:</strong></p>
+                                        <a href="#" class="nes-badge"><span class="is-dark">Construct 2</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-error">Game design</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-warning">teamwork</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1.3 Academic Project -->
+                        <div id="tab-academic" class="tab-pane" data-tab-group="exp-group">
+                            <!-- Project 1 -->
+                            <div class="nes-container is-rounded quest-item" style="position: relative; margin-bottom: 1.5rem;">
+                                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                    <span style="font-size: 0.9rem; color: #888;"><i class="pixelart-icons-font-calendar"></i> 2026</span>
+                                    <a href="https://github.com/IQSirawit/RPGGame" target="_blank" class="nes-icon github is-small"></a>
+                                </div>
+                                <h3><i class="nes-icon star is-small"></i> Legend of the Dragon Orb</h3>
+                                <p class="nes-text is-success">Role: Main Developer</p>
+                                <div class="quest-details">
+                                    <p>A Text-based RPG Game developed in Java as a university OOP project. Players explore different locations, engage in turn-based combat, manage inventory, and progress through the game. It demonstrates OOP concepts like inheritance, polymorphism, interfaces, and the Decorator design pattern with a well-organized class structure.</p>
+                                    <div class="learned-skills" style="margin-top: 1rem;">
+                                        <p style="margin-bottom: 0.5rem;"><strong>Learned:</strong></p>
+                                        <a href="#" class="nes-badge"><span class="is-dark">OOP</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-error">Java</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-primary">Game Dev</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-success">Logic design</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Project 2 -->
+                            <div class="nes-container is-rounded quest-item" style="position: relative;">
+                                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                    <span style="font-size: 0.9rem; color: #888;"><i class="pixelart-icons-font-calendar"></i> 2026</span>
+                                    <a href="https://github.com/Biwjustwork/twine-game-for-Eng3" target="_blank" class="nes-icon github is-small"></a>
+                                </div>
+                                <h3><i class="nes-icon star is-small"></i> MANSION</h3>
+                                <p class="nes-text is-success">Role: Game Devoloper</p>
+                                <div class="quest-details">
+                                    <p>MANSION is an interactive fiction game built with Twine for an English 3 course where players open an HTML file in their browser and make choices to navigate through a branching story with multiple endings. It's a simple educational project demonstrating interactive storytelling using web technology.</p>
+                                    <div class="learned-skills" style="margin-top: 1rem;">
+                                        <p style="margin-bottom: 0.5rem;"><strong>Learned:</strong></p>
+                                        <a href="#" class="nes-badge"><span class="is-primary">Twine</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-error">Game Dev</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-warning">Story telling</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1.4 Personal Project -->
+                        <div id="tab-personal" class="tab-pane" data-tab-group="exp-group">
+                            <div class="nes-container is-rounded quest-item" style="position: relative;">
+                                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                                    <span style="font-size: 0.9rem; color: #888;"><i class="pixelart-icons-font-calendar"></i> 2026</span>
+                                    <a href="https://github.com/Biwjustwork/My-chess-game" target="_blank" class="nes-icon github is-small"></a>
+                                </div>
+                                <h3><i class="nes-icon heart is-small"></i> Chaos Chess — Roguelike Chess Game</h3>
+                                <p class="nes-text is-warning">Role: Game Devoloper</p>
+                                <div class="quest-details">
+                                    <p>Chaos Chess is a web-based 2-player chess game that adds randomized "Roguelike" rules every 5 turns—like reverse pawns, explosive captures, and teleportation—making gameplay increasingly chaotic. Built with React, Vite, and Boardgame.io, this project demonstrates AI agent-assisted development for managing complex game logic and dynamic rule systems.</p>
+                                    <div class="learned-skills" style="margin-top: 1rem;">
+                                        <p style="margin-bottom: 0.5rem;"><strong>Learned:</strong></p>
+                                        <a href="#" class="nes-badge"><span class="is-dark">Antigravity Cli</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-error">AI agent</span></a>
+                                        <a href="#" class="nes-badge"><span class="is-primary">Game Dev</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1.5 Open Source -->
+                        <div id="tab-opensource" class="tab-pane" data-tab-group="exp-group">
+                            <div class="nes-container is-rounded quest-item" style="text-align: center; padding: 2rem;">
+                                <p class="nes-text is-disabled">No open source contributions yet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SELF-DEVELOPMENT (TRAINING) -->
+                <section class="nes-container with-title section-box">
+                    <h2 class="title">Self-Development</h2>
+                    
+                    <div class="quest-list">
+                        <!-- Certifications -->
+                        <div class="nes-container is-rounded is-dark">
+                            <h3 style="color: #fbd634;"><i class="pixelart-icons-font-article"></i> Certifications (คอร์สออนไลน์)</h3>
+                            <ul class="nes-list is-disc">
+                                <li><strong>Google Data Analytics</strong> - Coursera (2025)</li>
+                                <li><strong>React Native Masterclass</strong> - Udemy (2024)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Workshops -->
+                        <div class="nes-container is-rounded">
+                            <h3 style="color: #209cee;"><i class="pixelart-icons-font-buildings"></i> Workshop / Seminar</h3>
+                            <ul class="nes-list is-circle">
+                                <li><strong>Web3 & Blockchain Development</strong> - งาน Tech Summit 2024</li>
+                                <li><strong>UI/UX Masterclass</strong> - Skooldio</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AWARDS (ACHIEVEMENTS) -->
+                <section class="nes-container with-title section-box is-dark">
+                    <h2 class="title">Awards & Achievements</h2>
+                    <div class="quest-list">
+                        <!-- Competitions -->
+                        <div class="nes-container is-rounded is-dark" style="border-color: #e76e55;">
+                            <h3 style="color: #e76e55;"><i class="nes-icon trophy is-small" style="vertical-align: middle;"></i> Competitions (การแข่งขัน)</h3>
+                            <ul class="nes-list is-disc">
+                                <li>ชนะเลิศอันดับ 1 - National Coding Hackathon 2024</li>
+                                <li>Top 10 Finalist - Business Case Challenge</li>
+                            </ul>
+                        </div>
+
+                        <!-- Honors -->
+                        <div class="nes-container is-rounded is-dark" style="border-color: #92cc41;">
+                            <h3 style="color: #92cc41;"><i class="pixelart-icons-font-medal"></i> Honors (รางวัลเกียรติยศ)</h3>
+                            <ul class="nes-list is-circle">
+                                <li>ทุนการศึกษาเรียนดีเด่น คณะวิศวกรรมศาสตร์</li>
+                                <li>รางวัลนักศึกษาทำคุณประโยชน์ให้มหาวิทยาลัย</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!--VOLUNTEER (GUILD & SIDE QUESTS) -->
+                <section class="nes-container with-title section-box">
+                    <h2 class="title">Volunteer</h2>
+                    
+                    <div class="nes-container is-rounded quest-item">
+                        <div class="avatar-row">
+                            <div class="image-container">
+                                <div class="image-placeholder">IMAGE PLACEHOLDER</div>
+                            </div>
+                            
+                            <div class="dialog-box">
+                                <h3 class="nes-text is-success">ประธานโครงการสอนน้องเขียนโปรแกรม</h3>
+                                <p><strong>Role:</strong> ประธานชมรม (กิจกรรมในมหาวิทยาลัย)</p>
+                                <p><strong>Description:</strong> จัดค่ายอาสาสอนเขียนโปรแกรมพื้นฐานให้น้องๆ ระดับมัธยม ในโรงเรียนที่ขาดแคลนอุปกรณ์</p>
+                                
+                                <!-- Soft Skills Badges -->
+                                <div class="soft-skills">
+                                    <p><strong>Buffs (Soft Skills):</strong></p>
+                                    <a href="#" class="nes-badge"><span class="is-primary">Leadership</span></a>
+                                    <a href="#" class="nes-badge"><span class="is-success">Teamwork</span></a>
+                                    <a href="#" class="nes-badge"><span class="is-warning">Communication</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example Activity 2 -->
+                    <div class="nes-container is-rounded quest-item" style="margin-top: 1.5rem;">
+                        <div class="avatar-row">
+                            <div class="image-container">
+                                <div class="image-placeholder" style="background-color: #e76e55; color: #fff;">IMAGE PLACEHOLDER</div>
+                            </div>
+                            
+                            <div class="dialog-box">
+                                <h3 class="nes-text is-primary">อาสาสมัครโครงการแยกขยะ</h3>
+                                <p><strong>Role:</strong> อาสาสมัคร (งานพิเศษ)</p>
+                                <p><strong>Description:</strong> ร่วมทีมรณรงค์และให้ความรู้เรื่องการคัดแยกขยะในชุมชน</p>
+                                
+                                <!-- Soft Skills Badges -->
+                                <div class="soft-skills">
+                                    <p><strong>Buffs (Soft Skills):</strong></p>
+                                    <a href="#" class="nes-badge"><span class="is-success">Teamwork</span></a>
+                                    <a href="#" class="nes-badge"><span class="is-error">EQ</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p><span>© 2026 Pannawitch Sittitun.</span> Powered by NES.css</p>
+        </footer>
+    </div>
+    
+    <script src="script.js?v=2"></script>
+</body>
+</html>
