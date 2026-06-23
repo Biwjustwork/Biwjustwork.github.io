@@ -13,8 +13,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 top: 0,
                 behavior: 'smooth'
             });
+            // Initialize Game World
+            initGameWorld();
         });
     }
+
+    // Modal logic
+    const modalOverlay = document.getElementById("modal-overlay");
+    const btnCloseModal = document.getElementById("btn-close-modal");
+    const allModals = document.querySelectorAll(".modal-section");
+
+    function openModal(sectionId) {
+        // Hide all first
+        allModals.forEach(m => m.classList.add("hidden"));
+        // Show target
+        const target = document.getElementById(sectionId);
+        if (target) {
+            target.classList.remove("hidden");
+            modalOverlay.classList.remove("hidden");
+            // Pause the game if possible, though Kaboom runs in background, we can just block movement
+            isGamePaused = true;
+        }
+    }
+
+    if (btnCloseModal) {
+        btnCloseModal.addEventListener("click", () => {
+            modalOverlay.classList.add("hidden");
+            isGamePaused = false;
+        });
+    }
+
+    let isGamePaused = false;
 
     // 2. ระบบ Tabs (รองรับหลายกลุ่ม)
     const tabGroups = document.querySelectorAll('.tabs');
@@ -249,6 +278,189 @@ document.addEventListener("DOMContentLoaded", () => {
     const aboutLevelElement = document.getElementById("about-level-container");
     if (aboutLevelElement) {
         aboutLevelElement.innerHTML = `${levelText}`;
+    }
+
+    // =========================================================
+    // 5. KABOOM.JS GAME WORLD INITIALIZATION
+    // =========================================================
+    function initGameWorld() {
+        kaboom({
+            global: true,
+            canvas: document.getElementById("game-canvas"),
+            background: [ 33, 37, 41 ], // #212529 to match NES.css dark mode
+            width: 800,
+            height: 600,
+            scale: 1.5,
+            debug: true
+        });
+
+        loadBean();
+
+        scene("main", () => {
+            const levelConfig = {
+                tileWidth: 48,
+                tileHeight: 48,
+                tiles: {
+                    "=": () => [
+                        rect(48, 48),
+                        color(100, 100, 100),
+                        area(),
+                        body({ isStatic: true }),
+                        "wall"
+                    ],
+                    "A": () => [
+                        text("👦", { size: 32 }),
+                        area(),
+                        body({ isStatic: true }),
+                        "sign",
+                        { section: "modal-about", prompt: "About Me" }
+                    ],
+                    "E": () => [
+                        text("🎓", { size: 32 }),
+                        area(),
+                        body({ isStatic: true }),
+                        "sign",
+                        { section: "modal-education", prompt: "Education" }
+                    ],
+                    "S": () => [
+                        text("💡", { size: 32 }),
+                        area(),
+                        body({ isStatic: true }),
+                        "sign",
+                        { section: "modal-skills", prompt: "Skills" }
+                    ],
+                    "X": () => [
+                        text("⚔️", { size: 32 }),
+                        area(),
+                        body({ isStatic: true }),
+                        "sign",
+                        { section: "modal-experience", prompt: "Experience" }
+                    ],
+                    "T": () => [
+                        text("📜", { size: 32 }),
+                        area(),
+                        body({ isStatic: true }),
+                        "sign",
+                        { section: "modal-training", prompt: "Training" }
+                    ],
+                    "W": () => [
+                        text("🏆", { size: 32 }),
+                        area(),
+                        body({ isStatic: true }),
+                        "sign",
+                        { section: "modal-awards", prompt: "Awards" }
+                    ],
+                    "V": () => [
+                        text("🤝", { size: 32 }),
+                        area(),
+                        body({ isStatic: true }),
+                        "sign",
+                        { section: "modal-volunteer", prompt: "Volunteer" }
+                    ]
+                }
+            };
+
+            const map = [
+                "=======================",
+                "=                     =",
+                "=    A           E    =",
+                "=                     =",
+                "=                     =",
+                "=                     =",
+                "=    S           X    =",
+                "=                     =",
+                "=                     =",
+                "=                     =",
+                "=    T           W    =",
+                "=                     =",
+                "=                     =",
+                "=          V          =",
+                "=                     =",
+                "======================="
+            ];
+
+            const level = addLevel(map, levelConfig);
+
+            // Add player (the bean)
+            const player = add([
+                sprite("bean"),
+                pos(48 * 11, 48 * 7),
+                area(),
+                body(),
+                "player"
+            ]);
+
+            const SPEED = 250;
+
+            // Player movement
+            onKeyDown("left", () => {
+                if (!isGamePaused) player.move(-SPEED, 0);
+            });
+            onKeyDown("right", () => {
+                if (!isGamePaused) player.move(SPEED, 0);
+            });
+            onKeyDown("up", () => {
+                if (!isGamePaused) player.move(0, -SPEED);
+            });
+            onKeyDown("down", () => {
+                if (!isGamePaused) player.move(0, SPEED);
+            });
+            onKeyDown("a", () => {
+                if (!isGamePaused) player.move(-SPEED, 0);
+            });
+            onKeyDown("d", () => {
+                if (!isGamePaused) player.move(SPEED, 0);
+            });
+            onKeyDown("w", () => {
+                if (!isGamePaused) player.move(0, -SPEED);
+            });
+            onKeyDown("s", () => {
+                if (!isGamePaused) player.move(0, SPEED);
+            });
+
+            // Camera follows player
+            player.onUpdate(() => {
+                camPos(player.pos);
+            });
+
+            // Interaction hint text (fixed to screen)
+            const interactText = add([
+                text("Press SPACE to interact", { size: 24 }),
+                pos(width() / 2, height() - 50),
+                anchor("center"),
+                color(255, 255, 255),
+                opacity(0),
+                fixed()
+            ]);
+
+            let activeSign = null;
+
+            player.onCollide("sign", (s) => {
+                activeSign = s;
+                interactText.text = `[ SPACE ] ${s.prompt}`;
+                interactText.opacity = 1;
+            });
+
+            player.onCollideEnd("sign", (s) => {
+                if (activeSign === s) {
+                    activeSign = null;
+                    interactText.opacity = 0;
+                }
+            });
+
+            onKeyPress("space", () => {
+                if (activeSign && !isGamePaused) {
+                    openModal(activeSign.section);
+                }
+            });
+            onKeyPress("enter", () => {
+                if (activeSign && !isGamePaused) {
+                    openModal(activeSign.section);
+                }
+            });
+        });
+
+        go("main");
     }
 
 });

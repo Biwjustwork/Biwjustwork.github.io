@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/pixelarticons@2.1.2/fonts/pixelart-icons-font.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=2">
+    <!-- Kaboom.js -->
+    <script src="https://unpkg.com/kaboom@3000.1.17/dist/kaboom.js"></script>
 </head>
 <body>
     <!-- FX Layer สำหรับแสดงแอนิเมชัน Vampire Survivors -->
@@ -60,9 +62,17 @@
 
             <!-- MAIN PORTFOLIO CONTENT (Hidden until start) -->
             <div id="game-content" class="hidden">
+                <!-- Game Canvas Container -->
+                <div id="game-container">
+                    <canvas id="game-canvas"></canvas>
+                </div>
                 
-                <!-- ABOUT ME -->
-                <section class="nes-container with-title section-box">
+                <!-- Modal Overlay -->
+                <div id="modal-overlay" class="hidden">
+                    <button id="btn-close-modal" class="nes-btn is-error">X</button>
+                    <div id="modal-content-wrapper">
+                        <!-- ABOUT ME -->
+                        <section id="modal-about" class="nes-container with-title section-box modal-section hidden">
                     <h2 class="title">About Me</h2>
                     <div class="nes-container is-rounded quest-item">
                         <div class="avatar-row">
@@ -80,7 +90,7 @@
                 </section>
 
                 <!-- EDUCATION -->
-                <section class="nes-container with-title section-box is-dark">
+                <section id="modal-education" class="nes-container with-title section-box is-dark modal-section hidden">
                     <h2 class="title">Education</h2>
                     <div class="nes-container is-rounded is-dark">
                         <ul class="nes-list is-circle">
@@ -91,7 +101,7 @@
                 </section>
 
                 <!-- SKILLS -->
-                <section class="nes-container with-title section-box">
+                <section id="modal-skills" class="nes-container with-title section-box modal-section hidden">
                     <h2 class="title">Skills</h2>
                     
                     <!-- TABS (SKILLS) -->
@@ -145,7 +155,7 @@
                 </section>
 
                 <!-- PROFESSIONAL EXPERIENCE (QUESTS) -->
-                <section class="nes-container with-title section-box">
+                <section id="modal-experience" class="nes-container with-title section-box modal-section hidden">
                     <h2 class="title">Experience</h2>
                     
                     <!-- TABS (EXPERIENCE) -->
@@ -276,7 +286,7 @@
                 </section>
 
                 <!-- SELF-DEVELOPMENT (TRAINING) -->
-                <section class="nes-container with-title section-box">
+                <section id="modal-training" class="nes-container with-title section-box modal-section hidden">
                     <h2 class="title">Self-Development</h2>
                     
                     <div class="quest-list">
@@ -303,7 +313,7 @@
                 </section>
 
                 <!-- AWARDS (ACHIEVEMENTS) -->
-                <section class="nes-container with-title section-box is-dark">
+                <section id="modal-awards" class="nes-container with-title section-box is-dark modal-section hidden">
                     <h2 class="title">Awards & Achievements</h2>
                     <div class="quest-list">
                         <!-- Competitions -->
@@ -326,7 +336,7 @@
                 </section>
 
                 <!--VOLUNTEER (GUILD & SIDE QUESTS) -->
-                <section class="nes-container with-title section-box">
+                <section id="modal-volunteer" class="nes-container with-title section-box modal-section hidden">
                     <h2 class="title">Volunteer</h2>
                     
                     <div class="nes-container is-rounded quest-item">
@@ -396,6 +406,8 @@
                     </div>
                 </section>
 
+                    </div> <!-- end modal-content-wrapper -->
+                </div> <!-- end modal-overlay -->
 
             </div>
         </main>

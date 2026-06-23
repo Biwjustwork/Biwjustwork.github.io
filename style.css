@@ -316,6 +316,71 @@ nes-icon.image-placeholder {
 }
 
 /* =========================================================
+   GAME CONTAINER & MODALS
+======================================================== */
+#game-container {
+    width: 100%;
+    height: 600px;
+    background-color: #000;
+    border: 4px solid var(--text-color);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#game-canvas {
+    image-rendering: pixelated;
+    width: 100%;
+    height: 100%;
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000; /* Above fx-layer and everything */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+#modal-overlay.hidden {
+    display: none !important;
+}
+
+#btn-close-modal {
+    align-self: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 800px;
+    text-align: right;
+    background: transparent;
+    border: none;
+}
+#btn-close-modal:hover::after {
+    box-shadow: none;
+}
+
+#modal-content-wrapper {
+    width: 100%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-section {
+    margin-bottom: 0 !important;
+}
+
+/* =========================================================
    VAMPIRE SURVIVORS FX STYLES
 ========================================================= */
 #fx-layer {
