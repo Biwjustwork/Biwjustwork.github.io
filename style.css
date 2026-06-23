@@ -476,6 +476,12 @@ a:hover {
     text-shadow: 0 0 8px rgba(251, 214, 52, 0.8), 0 0 15px rgba(251, 214, 52, 0.6);
 }
 
+a:hover svg {
+    /* ลบการบังคับเปลี่ยนสีออก เพื่อให้ไอคอนคงสีเดิม */
+    /* ใช้ currentColor เพื่อดึงสีต้นฉบับของไอคอนแต่ละอันมาทำเป็นสีเรืองแสง */
+    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 15px currentColor);
+}
+
 @keyframes glow-blink {
     0%, 100% {
         opacity: 1;
