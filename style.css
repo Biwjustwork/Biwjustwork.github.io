@@ -462,3 +462,27 @@ nes-icon.image-placeholder {
 .nes-icon {
     image-rendering: pixelated; /* ทำให้ขอบพิกเซลคมชัดเสมอ */
 }
+
+/* =========================================================
+   LINK HOVER EFFECTS
+========================================================= */
+a {
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    animation: glow-blink 2s ease-in-out infinite;
+    color: #fbd634 !important;
+    text-shadow: 0 0 8px rgba(251, 214, 52, 0.8), 0 0 15px rgba(251, 214, 52, 0.6);
+}
+
+@keyframes glow-blink {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(251, 214, 52, 0.8), 0 0 15px rgba(251, 214, 52, 0.6);
+    }
+    50% {
+        opacity: 0.6;
+        text-shadow: 0 0 4px rgba(251, 214, 52, 0.4), 0 0 8px rgba(251, 214, 52, 0.2);
+    }
+}
