@@ -131,14 +131,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, 4000);
 
-    // 3.3 ระบบแม่เหล็กดูด EXP เข้าหาเมาส์
+    // 3.3 ระบบแม่เหล็กดูด EXP เข้าหาเมาส์/จุดสัมผัส
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
+    const updateMousePos = (e) => {
+        if (e.touches && e.touches.length > 0) {
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+        } else {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        }
+    };
+
+    document.addEventListener('mousemove', updateMousePos);
+    document.addEventListener('touchmove', updateMousePos, { passive: true });
+    document.addEventListener('touchstart', updateMousePos, { passive: true });
 
     function updateGems() {
         for (let i = gems.length - 1; i >= 0; i--) {
@@ -209,8 +218,8 @@ document.addEventListener("DOMContentLoaded", () => {
             bat.style.top = `${targetY}px`;
         }, 100);
         
-        // ถ้าผู้ใช้คลิกโดนค้างคาว (ฆ่ามัน)
-        bat.addEventListener('mousedown', (e) => {
+        // ถ้าผู้ใช้คลิกโดนค้างคาว (ฆ่ามัน) - รองรับ pointerdown สำหรับ touch
+        bat.addEventListener('pointerdown', (e) => {
             spawnDamage(e.clientX, e.clientY, true);
             spawnGem(e.clientX, e.clientY);
             bat.remove();

@@ -34,6 +34,10 @@
    GLOBAL STYLES
 ========================================================= */
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--pixel-font);
     background-color: #e0e6ed;
@@ -65,6 +69,7 @@ h1, h2, h3, h4, h5, h6, .title, .nes-text {
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.85); /* กล่องโปร่งแสงช่วยให้อ่านข้อความง่าย */
     border: 4px solid var(--text-color);
+    box-sizing: border-box;
 }
 
 /* =========================================================
@@ -97,6 +102,12 @@ h1, h2, h3, h4, h5, h6, .title, .nes-text {
 .social-links {
     display: flex;
     gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    display: inline-flex;
 }
 
 /* =========================================================
@@ -178,6 +189,7 @@ h1, h2, h3, h4, h5, h6, .title, .nes-text {
     overflow-x: auto;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #ccc;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tabs .nes-btn {
@@ -245,25 +257,51 @@ h1, h2, h3, h4, h5, h6, .title, .nes-text {
 
 .quest-item {
     background-color: #f9f9f9;
+    position: relative;
 }
 
-.quest-item h3 {
+.quest-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.quest-header-row h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 0.5rem;
-    line-height: 1.5;
+}
+
+.quest-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #888;
 }
 
 .quest-details {
-    line-height: 1.2;
-    font-size: 20px;
+    line-height: 1.4;
+    font-size: 1rem;
 }
 
 .quest-details p {
+    margin-bottom: 0.5rem;
+}
+
+.learned-skills {
+    margin-top: 1rem;
+}
+
+.learned-skills p {
     margin-bottom: 0.5rem;
 }
 
@@ -276,31 +314,36 @@ h1, h2, h3, h4, h5, h6, .title, .nes-text {
 
 .image-container {
     flex-shrink: 0;
+    overflow: hidden;
 }
 
-nes-icon.image-placeholder {
-    width: 200px;
-    height: 150px;
-    background-color: #a0a0a0;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    text-align: center;
+.profile-image-container {
+    width: 160px;
+    height: 200px;
+}
+
+.volunteer-image-container {
+    width: 300px;
+    height: 300px;
+}
+
+.pixel-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
     border: 4px solid var(--text-color);
-    /* ทำเอฟเฟกต์เหมือนภาพแตกๆ เล็กน้อย */
     box-shadow: 2px 2px 0px 0px #000;
 }
 
 .dialog-box {
     flex: 1;
-    line-height: 0.9;
-    font-size: 1.4rem;
+    line-height: 1.3;
+    font-size: 1.1rem;
 }
 
 .dialog-box h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     border-bottom: 2px solid #ccc;
     padding-bottom: 0.5rem;
@@ -415,17 +458,77 @@ nes-icon.image-placeholder {
     font-size: 0.8rem;
 }
 
+/* Border helpers aligning with NES.css theme colors */
+.border-primary { border-color: #209cee !important; }
+.border-success { border-color: #92cc41 !important; }
+.border-warning { border-color: #fbd634 !important; }
+.border-error { border-color: #e76e55 !important; }
+
+/* Text color helpers */
+.text-primary-color { color: #209cee !important; }
+.text-success-color { color: #92cc41 !important; }
+.text-warning-color { color: #fbd634 !important; }
+.text-error-color { color: #e76e55 !important; }
+
+/* VS FX Toggle styling */
+.fx-toggle-label {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.fx-toggle-text {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+}
+
+/* Quest item spacing utility */
+.quest-item + .quest-item,
+.tab-pane > .quest-item + .quest-item {
+    margin-top: 1.5rem;
+}
+
 /* =========================================================
    RESPONSIVE DESIGN
 ========================================================= */
 
 @media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    #app {
+        margin: 1rem 0.5rem;
+        padding: 1.5rem 1rem;
+        border-width: 4px;
+    }
+
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav-brand {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .social-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
     .title-anim {
         font-size: 2rem;
     }
 
     .section-box .title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .tabs .nes-btn {
@@ -436,31 +539,92 @@ nes-icon.image-placeholder {
     .avatar-row {
         flex-direction: column;
         align-items: center;
+        gap: 1.5rem;
+    }
+
+    .profile-image-container {
+        width: 140px;
+        height: 175px;
     }
     
-    .image-placeholder {
+    .volunteer-image-container {
         width: 100%;
-        max-width: 300px;
-        margin-bottom: 1rem;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 1 / 1;
     }
     
     .dialog-box {
         width: 100%;
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .dialog-box h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+    }
+
+    /* Hide NES balloon arrow on mobile to prevent weird positioning */
+    .nes-balloon.from-left::before,
+    .nes-balloon.from-left::after {
+        display: none !important;
+    }
+
+    .nes-balloon.from-left {
+        margin-left: 0 !important;
+        margin-top: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .nav-brand h1 {
-        font-size: 1.2rem;
+    body {
+        font-size: 14px;
     }
-    
-    .social-links {
-        gap: 0.5rem;
+
+    #app {
+        margin: 0.5rem 0.25rem;
+        padding: 1rem 0.5rem;
+        border-width: 2px;
+    }
+
+    .nav-brand h1 {
+        font-size: 1.1rem;
+    }
+
+    .nav-brand svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .social-links a svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .section-box .title {
+        font-size: 1.4rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .skill-card {
+        padding: 0.5rem;
+    }
+
+    .skill-card img {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0.5rem;
+    }
+
+    .skill-name {
+        font-size: 0.8rem;
+    }
+
+    .nes-list {
+        padding-left: 1.2rem !important;
     }
 }
 
